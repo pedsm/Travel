@@ -36,7 +36,7 @@ def calcDistance(city1,city2):
     return tmp
 
 cities = []
-cityNum = 4
+cityNum = 10 
 worldSize = 100
 # city generator
 print "Generating 10 cities"
@@ -46,11 +46,19 @@ for i in range(cityNum):
     addCity("City " + str(i), x, y)
 
 # start the permutations
-min = 0
+min = worldSize*worldSize 
+lazy = False
 for p in permutations(cities):
     total = 0
     for i in range(1,len(p)):
         total = total + calcDistance(p[i-1],p[i])
+        if total > min:
+            lazy = True
+            break
+
+    if lazy:
+        continue
+
     # add the way back
     total = total + calcDistance(p[0],p[len(p)-1])
     if total < min or min == 0:
