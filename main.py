@@ -1,5 +1,6 @@
 import random
 import math
+from itertools import permutations
 class city(object):
     """Object for a city """
 
@@ -8,14 +9,13 @@ class city(object):
         self.x = x
         self.y = y
 
-
 def addCity(name,x,y):
     """Adds a city to the cities array
 
     :name: City Name
     :x: x position of the city
     :y: y position of the city
-    :returns: returns the new City object 
+    :returns: returns the new City object
 
     """
     tmp = city(name,x,y)
@@ -40,14 +40,20 @@ addCity("New city",40,50)
 
 # city generator
 print "Generating 10 cities"
-for i in range(10):
+for i in range(8):
     x = random.randint(0,100)
     y = random.randint(0,100)
     addCity("City " + str(i), x, y)
 
-
-# print all city names
-for city in cities:
-    print (city.name,city.x,city.y)
-
-
+# start the permutations
+min = 0
+for p in permutations(cities):
+    total = 0
+    for i in range(1,len(p)):
+        total = total + calcDistance(p[i-1],p[i])
+    if total < min or min == 0:
+        min = total
+        print "New min distance:" + str(total)
+        print "Route:"
+        for city in p:
+            print city.name
