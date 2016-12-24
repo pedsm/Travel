@@ -36,7 +36,7 @@ def calcDistance(city1,city2):
     return tmp
 
 cities = []
-cityNum = 10 
+cityNum = 10
 worldSize = 100
 # city generator
 print "Generating 10 cities"
@@ -57,6 +57,7 @@ for p in permutations(cities):
             break
 
     if lazy:
+        lazy = False
         continue
 
     # add the way back
