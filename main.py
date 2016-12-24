@@ -35,9 +35,7 @@ def calcDistance(city1,city2):
     tmp = math.sqrt(deltaX+deltaY)
     return tmp
 
-cities = [city('Mandala city',20,30)]
-addCity("New city",40,50)
-
+cities = []
 # city generator
 print "Generating 10 cities"
 for i in range(8):
@@ -51,6 +49,8 @@ for p in permutations(cities):
     total = 0
     for i in range(1,len(p)):
         total = total + calcDistance(p[i-1],p[i])
+    # add the way back
+    total = total + calcDistance(p[0],p[len(p)-1])
     if total < min or min == 0:
         min = total
         print "New min distance:" + str(total)
