@@ -36,11 +36,13 @@ def calcDistance(city1,city2):
     return tmp
 
 cities = []
+cityNum = 4
+worldSize = 100
 # city generator
 print "Generating 10 cities"
-for i in range(8):
-    x = random.randint(0,100)
-    y = random.randint(0,100)
+for i in range(cityNum):
+    x = random.randint(0,worldSize)
+    y = random.randint(0,worldSize)
     addCity("City " + str(i), x, y)
 
 # start the permutations
